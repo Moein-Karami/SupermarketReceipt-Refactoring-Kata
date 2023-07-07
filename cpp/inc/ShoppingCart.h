@@ -22,6 +22,7 @@ public:
     void handleOffers(Receipt& receipt, std::map<Product, Offer> offers, SupermarketCatalog* catalog);
 
 private:
+    double calculateDiscountAmount(Offer offer, double quantity, double unitPrice);
     std::vector<ProductQuantity> items;
     std::map<Product, double> productQuantities;
 };
