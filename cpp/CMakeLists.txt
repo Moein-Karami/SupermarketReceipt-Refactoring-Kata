@@ -13,4 +13,3 @@ add_subdirectory(src)
 add_subdirectory(test-catch2)
 add_subdirectory(test-doctest)
 add_subdirectory(test-gtest)
-
