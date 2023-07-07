@@ -10,7 +10,8 @@
 #define LeastQuantity 1
 #define NormalPrecision 2
 #define MinPrecision 0
-#define MaxPrecision3
+#define MaxPrecision 3
+#define Initial NumberOfPrinters 40
 
 class ReceiptPrinter
 {
