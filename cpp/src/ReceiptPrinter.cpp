@@ -25,14 +25,14 @@ std::string ReceiptPrinter::printReceipt(const Receipt &receipt)
 
 std::string ReceiptPrinter::presentReceiptItem(const ReceiptItem &item) const
 {
-	std::string price = getFormattedNumberAsString(item.getTotalPrice(), 2);
+	std::string price = getFormattedNumberAsString(item.getTotalPrice(), NormalPrecision);
 	std::string name = item.getProduct().getName();
 
 	std::string line = formatLineWithWhitespace(name, price);
 
-	if (item.getQuantity() != 1)
+	if (item.getQuantity() != LeastQuantity)
 	{
-		line += "  " + getFormattedNumberAsString(item.getPrice(), 2) + " * " + presentQuantity(item) + "\n";
+		line += "  " + getFormattedNumberAsString(item.getPrice(), NormalPrecision) + " * " + presentQuantity(item) + "\n";
 	}
 	return line;
 }
@@ -40,7 +40,7 @@ std::string ReceiptPrinter::presentReceiptItem(const ReceiptItem &item) const
 std::string ReceiptPrinter::presentDiscount(const Discount &discount) const
 {
 	std::string name = discount.getDescription() + "(" + discount.getProduct().getName() + ")";
-	std::string pricePresentation = getFormattedNumberAsString(discount.getDiscountAmount(), 2);
+	std::string pricePresentation = getFormattedNumberAsString(discount.getDiscountAmount(), NormalPrecision);
 	return formatLineWithWhitespace(name, pricePresentation);
 }
 
@@ -63,13 +63,13 @@ std::string ReceiptPrinter::formatLineWithWhitespace(const std::string &name, co
 }
 
 std::string ReceiptPrinter::presentPrice(double price) const
-{ return getFormattedNumberAsString(price, 2); }
+{ return getFormattedNumberAsString(price, NormalPrecision); }
 
 std::string ReceiptPrinter::presentQuantity(const ReceiptItem &item)
 {
 	return ProductUnit::Each == item.getProduct().getUnit()
-			? getFormattedNumberAsString(item.getQuantity(), 0)
-			: getFormattedNumberAsString(item.getQuantity(), 3);
+			? getFormattedNumberAsString(item.getQuantity(), MinPrecision)
+			: getFormattedNumberAsString(item.getQuantity(), MaxPrecision);
 }
 
 std::string ReceiptPrinter::getFormattedNumberAsString(double number, int precision)

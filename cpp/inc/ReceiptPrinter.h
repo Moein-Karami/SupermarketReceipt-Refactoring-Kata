@@ -7,6 +7,11 @@
 #include <iomanip>
 #include <sstream>
 
+#define LeastQuantity 1
+#define NormalPrecision 2
+#define MinPrecision 0
+#define MaxPrecision3
+
 class ReceiptPrinter
 {
 
