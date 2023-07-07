@@ -1,7 +1,10 @@
 #include "Offer.h"
 
 Offer::Offer(const SpecialOfferType& offerType, const Product& product, double argument)
-        : offerType(offerType), product(product), argument(argument) {}
+: offerType(offerType)
+, product(product)
+, argument(argument)
+{}
 
 SpecialOfferType Offer::getOfferType() const {
         return offerType;

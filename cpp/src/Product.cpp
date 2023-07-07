@@ -1,6 +1,9 @@
 #include "Product.h"
 
-Product::Product(const std::string& name, const ProductUnit& unit) : name(name), unit(unit) {}
+Product::Product(const std::string& name, const ProductUnit& unit)
+: name(name)
+, unit(unit)
+{}
 
 std::string Product::getName() const {
     return name;

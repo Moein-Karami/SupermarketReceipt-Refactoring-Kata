@@ -29,10 +29,9 @@ void ShoppingCart::handleOffers(Receipt& receipt, std::map<Product, Offer> offer
         double quantity = productQuantity.second;
         if (offers.find(product) != offers.end()) {
             auto offer = offers[product];
-            double unitPrice = catalog->getUnitPrice(product);
             int quantityAsInt = (int) quantity;
             Discount* discount = nullptr;
-            double discountAmount = calculateDiscountAmount(offer, quantity, unitPrice);
+            double discountAmount = calculateDiscountAmount(offer, quantity, catalog->getUnitPrice(product));
 
             if (offer.getOfferType() == SpecialOfferType::TwoForAmount && quantityAsInt >= 2) {
                 discount = new Discount("2 for " + std::to_string(offer.getArgument()), discountAmount, product);
@@ -54,8 +53,7 @@ void ShoppingCart::handleOffers(Receipt& receipt, std::map<Product, Offer> offer
     }
 }
 
-double ShoppingCart::calculateDiscountAmount(Offer offer, double quantity, double unitPrice)
-{
+double ShoppingCart::calculateDiscountAmount(Offer offer, double quantity, double unitPrice){
     int quantityAsInt = int (quantity);
     if (offer.getOfferType() == SpecialOfferType::TwoForAmount) {
         return -(unitPrice * quantity - (offer.getArgument() * (quantityAsInt / 2) + quantityAsInt % 2 * unitPrice));

@@ -1,6 +1,8 @@
 #include "Teller.h"
 
-Teller::Teller(SupermarketCatalog *catalog) : catalog(catalog) {}
+Teller::Teller(SupermarketCatalog *catalog)
+: catalog(catalog)
+{}
 
 void Teller::addSpecialOffer(SpecialOfferType offerType, const Product& product, double argument) {
     offers[product] = Offer(offerType, product, argument);
